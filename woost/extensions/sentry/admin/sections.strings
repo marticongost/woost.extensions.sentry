@@ -1,0 +1,4 @@
+
+[woost.extensions.sentry.admin.sections.SentrySettings.instance]
+*: Sentry
+

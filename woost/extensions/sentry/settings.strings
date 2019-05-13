@@ -1,0 +1,8 @@
+
+[woost.models.settings]
+
+    [x_sentry_dsn]
+    ca: DSN Sentry
+    es: DSN Sentry
+    en: Sentry DSN
+
