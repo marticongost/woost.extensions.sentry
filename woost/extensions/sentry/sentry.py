@@ -5,6 +5,7 @@
 from typing import Dict, Optional, Tuple, Type
 import sys
 import traceback
+from contextlib import contextmanager
 
 from pkg_resources import get_distribution
 import raven
@@ -119,4 +120,14 @@ def get_sentry(dsn: str = None) -> Optional[Sentry]:
         instance = sentry_class(dsn)
         _instances[dsn] = instance
         return instance
+
+
+@contextmanager
+def sentry_reporting(dsn: str = None):
+    sentry = get_sentry(dsn)
+    try:
+        yield sentry
+    except Exception as exc:
+        if sentry:
+            sentry.capture_exception(exception=exc)
 
