@@ -130,4 +130,5 @@ def sentry_reporting(dsn: str = None):
     except Exception as exc:
         if sentry:
             sentry.capture_exception(exception=exc)
+        raise
 
