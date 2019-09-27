@@ -33,6 +33,17 @@ def _handle_exception(e):
         )
 
 
+def ignored_by_sentry(cls: Type[Exception]) -> Type[Exception]:
+    """A class decorator that excludes an exception type from being reported by
+    Sentry.
+
+    :param cls: The exception type to ignore.
+    :return: The exception type given in `cls`.
+    """
+    Sentry.ignored_exception_types += (cls,)
+    return cls
+
+
 class Sentry:
 
     ignored_exception_types: Tuple[Type[Exception]] = (
